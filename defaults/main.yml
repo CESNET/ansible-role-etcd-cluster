@@ -1,0 +1,1 @@
+etcd_cluster: "{% for host in groups['etcd-cluster'] %}{{ hostvars[host]['inventory_hostname'] }}=https://{{ hostvars[host]['inventory_hostname'] }}:2380{% if not loop.last %},{% endif %}{% endfor %}"

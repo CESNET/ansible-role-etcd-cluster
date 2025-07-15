@@ -1,0 +1,18 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: etcd-cluster
+  author: Bohdan Khomutskyi
+  company: CESNET
+  description: Installs secure etcd cluster.
+  license: Apache
+  min_ansible_version: 2.5
+  platforms:
+    - name: Debian
+      versions:
+        - bookworm
+  galaxy_tags:
+    - etcd
+
+allow_duplicates: true

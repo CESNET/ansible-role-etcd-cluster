@@ -1,0 +1,9 @@
+---
+- name: Restart etcd
+  become: true
+  ansible.builtin.service:
+    name: etcd
+    enabled: true
+    state: restarted
+  loop: '{{ groups["etcd-cluster"] }}'
+  delegate_to: '{{ item }}'

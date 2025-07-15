@@ -1,0 +1,50 @@
+- name: Install etcd server from package
+  apt:
+    name: etcd-server
+    state: present
+
+- name: Create etcd configuration directory
+  ansible.builtin.file:
+    path: /etc/etcd/
+    owner: etcd
+    group: etcd
+    mode: '0700'
+    state: directory
+
+- name: Create etcd configuration directories
+  ansible.builtin.file:
+    path: /etc/etcd/tls
+    owner: etcd
+    group: etcd
+    mode: '0700'
+    state: directory
+
+
+- name: Copy TLS certificates and keys
+  with_items:
+    - "{{ inventory_hostname }}/etcd/client-ca-cert.pem"
+    - "{{ inventory_hostname }}/etcd/peer-ca-cert.pem"
+    - "{{ inventory_hostname }}/etcd/server-cert.pem"
+    - "{{ inventory_hostname }}/etcd/server-key.pem"
+    - "{{ inventory_hostname }}/etcd/peer-cert.pem"
+    - "{{ inventory_hostname }}/etcd/peer-key.pem"
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /etc/etcd/tls/
+    owner: 'etcd'
+    group: 'etcd'
+    mode: '400'
+
+
+- name: Configure etcd
+  with_items:
+    - filename: etcd
+      destination_dir: /etc/default/
+  ansible.builtin.template:
+    src: '{{ item.filename }}.j2'
+    dest: '{{ item.destination_dir }}/{{ item.filename }}'
+    owner: 'etcd'
+    group: 'etcd'
+    mode: '640'
+  notify:
+    - Restart etcd
