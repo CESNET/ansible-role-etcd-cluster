@@ -5,5 +5,5 @@
     name: etcd
     enabled: true
     state: restarted
-  loop: '{{ groups["etcd-cluster"] }}'
+  loop: '{{ groups[etcd_cluster_group_name] }}'
   delegate_to: '{{ item }}'

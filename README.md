@@ -18,6 +18,7 @@ Ansible role cesnet.etcd-cluster installs etcd cluster in multi-node configurati
 ## Role variables
 * etcd_cluster - sets ETCD_INITIAL_CLUSTER variable in configuration (defaults to all nodes).
 * etcd_initial_cluster_token - sets ETCD_INITIAL_CLUSTER_TOKEN.
+* etcd_cluster_group_name - name of the Ansible inventory host group, where etcd will be deployed.
 
 ## Example playbook
 ```
