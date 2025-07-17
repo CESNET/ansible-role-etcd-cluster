@@ -26,6 +26,7 @@ Ansible role cesnet.etcd-cluster installs etcd cluster in multi-node configurati
   become: true
   vars:
     - etcd_initial_cluster_token: Pa$$w0rd123
+    - etcd_cluster_group_name: etcd_cluster
   roles:
     - cesnet.etcd-cluster
 ```
