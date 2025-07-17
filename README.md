@@ -1,9 +1,8 @@
 # perun-etcd-cluster
-Ansible role cesnet.etcd-cluster installs etcd cluster in multi-node configuration, secured with TLS.
+Ansible role cesnet.etcd_cluster installs etcd cluster in multi-node configuration, secured with TLS.
 
 ## Requirements
 * Debian 12 or above.
-* etcd-cluster group defined
 
 ### TLS certificates must be present for each node in {{ inventory_hostname }}/etcd:
 * client-ca-cert.pem - Certificate authority of clients, allowed to connect to etcd.
@@ -22,11 +21,11 @@ Ansible role cesnet.etcd-cluster installs etcd cluster in multi-node configurati
 
 ## Example playbook
 ```
-- hosts: etcd-cluster
+- hosts: etcd_cluster
   become: true
   vars:
     - etcd_initial_cluster_token: Pa$$w0rd123
     - etcd_cluster_group_name: etcd_cluster
   roles:
-    - cesnet.etcd-cluster
+    - cesnet.etcd_cluster
 ```

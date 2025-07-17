@@ -2,7 +2,7 @@
 dependencies: []
 
 galaxy_info:
-  role_name: etcd-cluster
+  role_name: etcd_cluster
   author: Bohdan Khomutskyi
   company: CESNET
   description: Installs secure etcd cluster.
@@ -14,5 +14,6 @@ galaxy_info:
         - bookworm
   galaxy_tags:
     - etcd
+    - etcd_cluster
 
 allow_duplicates: true
