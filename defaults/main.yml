@@ -1,1 +1,11 @@
 etcd_cluster: "{% for host in groups[etcd_cluster_group_name] %}{{ hostvars[host]['inventory_hostname'] }}=https://{{ hostvars[host]['inventory_hostname'] }}:2380{% if not loop.last %},{% endif %}{% endfor %}"
+# The below variable specifies the files to be uploaded to /etc/etcd/tls. There are fixed names of the 7 files,
+# each must be either uploaded, or already present at /etc/etcd/tls on each node of the etcd-cluster.
+etcd_upload_tls_certificates: # set to [], if the certificates are already prepared at each node.
+  - "{{ inventory_hostname }}/etcd/server-cert.pem"
+  - "{{ inventory_hostname }}/etcd/server-key.pem"
+  - "{{ inventory_hostname }}/etcd/peer-cert.pem"
+  - "{{ inventory_hostname }}/etcd/peer-cert.pem"
+  - "{{ inventory_hostname }}/etcd/client-ca-cert.pem"
+  - "{{ inventory_hostname }}/etcd/peer-ca-cert.pem"
+  - "{{ inventory_hostname }}/etcd/peer-key.pem"

@@ -26,15 +26,8 @@
     mode: '0700'
     state: directory
 
-
 - name: Copy TLS certificates and keys
-  with_items:
-    - "{{ inventory_hostname }}/etcd/client-ca-cert.pem"
-    - "{{ inventory_hostname }}/etcd/peer-ca-cert.pem"
-    - "{{ inventory_hostname }}/etcd/server-cert.pem"
-    - "{{ inventory_hostname }}/etcd/server-key.pem"
-    - "{{ inventory_hostname }}/etcd/peer-cert.pem"
-    - "{{ inventory_hostname }}/etcd/peer-key.pem"
+  with_items: "{{ etcd_upload_tls_certificates }}"
   ansible.builtin.copy:
     src: "{{ item }}"
     dest: /etc/etcd/tls/
@@ -42,6 +35,20 @@
     group: 'etcd'
     mode: '400'
 
+
+- name: Ensure the required TLS certificate and key files are present
+  # The configuration template requires the files listed below:
+  with_items:
+    - /etc/etcd/tls/server-cert.pem
+    - /etc/etcd/tls/server-key.pem
+    - /etc/etcd/tls/peer-cert.pem
+    - /etc/etcd/tls/peer-cert.pem
+    - /etc/etcd/tls/client-ca-cert.pem
+    - /etc/etcd/tls/peer-ca-cert.pem
+    - /etc/etcd/tls/peer-key.pem
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: file
 
 - name: Configure etcd
   with_items:
