@@ -35,10 +35,9 @@ empty list [], in case you have the 7 required certificate and key files at the 
       - "{{ inventory_hostname }}/etcd/server-cert.pem"
       - "{{ inventory_hostname }}/etcd/server-key.pem"
       - "{{ inventory_hostname }}/etcd/peer-cert.pem"
-      - "{{ inventory_hostname }}/etcd/peer-cert.pem"
+      - "{{ inventory_hostname }}/etcd/peer-key.pem"
       - "{{ inventory_hostname }}/etcd/client-ca-cert.pem"
       - "{{ inventory_hostname }}/etcd/peer-ca-cert.pem"
-      - "{{ inventory_hostname }}/etcd/peer-key.pem"
   roles:
     - cesnet.etcd_cluster
 ```

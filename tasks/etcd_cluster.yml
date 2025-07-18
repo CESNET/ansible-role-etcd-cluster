@@ -42,10 +42,9 @@
     - /etc/etcd/tls/server-cert.pem
     - /etc/etcd/tls/server-key.pem
     - /etc/etcd/tls/peer-cert.pem
-    - /etc/etcd/tls/peer-cert.pem
+    - /etc/etcd/tls/peer-key.pem
     - /etc/etcd/tls/client-ca-cert.pem
     - /etc/etcd/tls/peer-ca-cert.pem
-    - /etc/etcd/tls/peer-key.pem
   ansible.builtin.file:
     path: "{{ item }}"
     state: file
